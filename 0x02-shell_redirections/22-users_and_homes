@@ -1,2 +1,3 @@
 #!/bin/bash
-cat /etc/passwd | sort | cut -d ":" -f "1,6"
+#cat /etc/passwd | sort | cut -d ":" -f "1,6" -s
+cat ~/test021023| sort | cut -d ":" -f "1,6" -s
