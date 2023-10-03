@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -lR --file-type | grep -E ".js$"
