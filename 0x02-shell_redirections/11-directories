@@ -1,2 +1,3 @@
 #!/bin/bash
-ls -ladR */ | wc -l
+find ./*/ -type d | wc -l
+
