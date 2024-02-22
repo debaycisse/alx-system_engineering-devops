@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script display the a list of files in this directory without the numeric values, prepended to their names
+for file in *;
+do
+	echo "$file" >> temp_f;
+done
+cut -d "-" -f 2 temp_f
+rm temp_f
