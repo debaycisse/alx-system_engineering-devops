@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This prints user information in username, user id, and home directory format
+# shellcheck disable=SC2238
+while read -r row;
+do
+	echo "$row" >> test;
+done < /etc/passwd
+cut -d ":" -f 1,3,6 ./test;
+rm -f ./test
