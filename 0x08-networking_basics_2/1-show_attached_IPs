@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Bash script that displays list of active IPs on a machine
+ifconfig -a | grep inet | cut -c 14-24
