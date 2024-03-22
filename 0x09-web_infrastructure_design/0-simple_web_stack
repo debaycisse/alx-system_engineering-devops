@@ -1,0 +1,16 @@
+Infrastructure image representation: https://imgur.com/a/kXSrVBn
+
+The infrastructure contains the following:
+    - 1 server
+    - web server (Nginx), installed on the server
+    - application server, configured
+    - application files (your code base)
+    - 1 database (MySQL)
+    - 1 domain name foobar.com configured with a www record that points to your server IP 8.8.8.8
+
+Some specifics about the infrastructure:
+The server is an OS with capability to serve requests from a client-based OS.
+The server houses the installation and configuration of the web server (Nginx), application server, the code base or application files, the MySQL Database, and the domain file for foobar.com that contains the A record with a value of www
+
+The domain name allows the foobar.com to be accessible to the public via the web browsers.
+The TLD (top-level domain), which is .com in this instance
