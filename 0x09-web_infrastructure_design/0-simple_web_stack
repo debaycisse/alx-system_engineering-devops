@@ -1,13 +1,1 @@
-Infrastructure's image representation: https://imgur.com/a/kXSrVBn
-
-From the infrastructure image whose link is provided above, a user tries to visit foobar.com and the TLD points at the ip address of 8.8.8.8 of the server where a DNS zone file contains an A record of value 'www'.
-This server contains:
-    - A server OS
-    - web server (Nginx) is installed on the server
-    - application server is installed and configured on the same server
-    - application files (your code base) is stored on the same server
-    - 1 database (MySQL) is installed and confirgured on this same server
-    - 1 domain name foobar.com configured with a www record that points to your server IP 8.8.8.8
-This server can through the NGINX web server accept and respond to an HTTP resquest from the user.
-It can also process business logic through the application server which uses the application file to process any transactional process from the user.
-It uses the application server ability to connect to the MySQL database which stores all the needful data. The application server also perform different implemented operations (such as retreiving, updating, creating, and deleting data) on the database.
+https://imgur.com/a/p2Jt1hK
