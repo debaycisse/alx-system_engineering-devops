@@ -1,34 +1,53 @@
 https://imgur.com/a/togo5Wg
 
 Server 1: 
-       This primary server hosts a suite comprising a web server (Nginx), an application server, a MySQL database, and the entire code base. It serves as the backbone for delivering web content, managing application logic, and housing the database.
+       This primary server hosts a suite comprising a web server (Nginx), an application server, a MySQL database, and the
+       entire code base. It serves as the backbone for delivering web content, managing application logic, and housing
+       the database.
        
 Server 2:
-       Configured identically to Server 1, this secondary server serves as its replica, maintaining an exact copy of its configuration and data. It stands ready to take over in case of failures encountered by Server 1.
+       Configured identically to Server 1, this secondary server serves as its replica, maintaining an exact copy of its
+       configuration and data. It stands ready to take over in case of failures encountered by Server 1.
        
 Load Balancer (HAproxy):
-     HAproxy, our chosen load balancer, stands as the intermediary channeling incoming traffic between the two servers. Its role is pivotal in evenly distributing the workload, ensuring seamless failover by redirecting traffic to the operational server in case of a failure.
-     The purpose of the Load Balancer is to distribute incoming traffic across multiple servers, which increases the efficiency, reliability, and availability of the site (foobar.com). If one web server crashes all of a sudden, this special server(Load balancer) automatically redirects the traffic to the remaining web servers.
-The Load Balancer has different algorithms, since we only have two servers, my selected algorithm is round robin, which distributes traffic to each of the two servers evenly.
+     HAproxy, our chosen load balancer, stands as the intermediary channeling incoming traffic between the two servers.
+     Its role is pivotal in evenly distributing the workload, ensuring seamless failover by redirecting traffic to the
+     operational server in case of a failure.
+     The purpose of the Load Balancer is to distribute incoming traffic across multiple servers, which increases the
+     efficiency, reliability, and availability of the site (foobar.com). If one web server crashes all of a sudden, this
+     special server(Load balancer) automatically redirects the traffic to the remaining web servers.
+     
+The Load Balancer has different algorithms, since we only have two servers, my selected algorithm is round robin,
+which distributes traffic to each of the two servers evenly. Apart from round robin, there are also least-connection
+and IP Hash algorithm.
     
 How a database Primary-Replica (Master-Slave) cluster works:
-    A MySQL Master-Replica cluster architecture is adopted to guarantee data synchronization across both servers. The Master node functions as the primary data writing source, while the Replica node synchronizes its data with the Master and exclusively handles read operations. This architecture effectively balances both read and write operations, ensuring synchronized data across the system.
+    A MySQL Master-Replica cluster architecture is adopted to guarantee data synchronization across both servers.
+    The Master node functions as the primary data writing source, while the Replica node synchronizes its data with the
+    Master and exclusively handles read operations. This architecture effectively balances both read and write operations,
+    ensuring synchronized data across the system.
 
 Application Files (Code Base):
-The application's code and files are duplicated on both Server 1 and Server 2. This redundancy strategy ensures uninterrupted application service, allowing the active server to seamlessly continue operations even if its counterpart experiences a failure.
+The application's code and files are duplicated on both Server 1 and Server 2. This redundancy strategy ensures uninterrupted
+application service, allowing the active server to seamlessly continue operations even if its counterpart experiences a failure.
 
 How our Load-balancer Enables an active-active or active-passive setup:
-The configuration primarily resembles an Active-Passive setup. In this arrangement, the Master server (Server 1) actively manages both read and write operations, serving as the primary operational node. Conversely, the Replica server (Server 2) operates passively, acting as a backup and exclusively handling read operations. This delineation of roles enhances system stability and resource utilization.
+The configuration primarily resembles an Active-Passive setup. In this arrangement, the Master server (Server 1) actively manages
+both read and write operations, serving as the primary operational node. Conversely, the Replica server (Server 2) operates passively,
+acting as a backup and exclusively handling read operations. This delineation of roles enhances system stability and resource utilization.
 
 The difference between Active-Active and Active-Passive setup:
-In Active-Active setup, two or more identical servers have the same configuration, there is not master or slave between, everyone of them is handling the same role and load-balancer is used to distribute traffic to them evenly.
-In Active-Passive setup, two or more servers have a single primary or master server and one or more replicas or slave servers. The primary server is used to handle write-related operations while the replicas are used for read-related operations
+In Active-Active setup, two or more identical servers have the same configuration, there is not master or slave between, everyone of
+them is handling the same role and load-balancer is used to distribute traffic to them evenly.
+In Active-Passive setup, two or more servers have a single primary or master server and one or more replicas or slave servers.
+The primary server is used to handle write-related operations while the replicas are used for read-related operations
 
-Potential Weaknesses to Address:
-       Single Point of Failure (SPOF):
-	  	 The infrastructure faces a potential Single Point of Failure (SPOF) with the load balancer. If the load balancer encounters a failure, traffic distribution will be disrupted, impacting service availability. it's like a road closure! Visitors won't be able to reach your website.
-       Security Concerns:
-	  	 The infrastructure lacks essential security measures such as a firewall and HTTPS encryption.
-Adding a firewall to the infrastructure is crucial for filtering and securing incoming traffic, thus preventing unauthorized access and potential threats. just like a house needs locks. Firewalls filter who gets in, and HTTPS is like putting your letters in coded envelopes for safe travel.
-       Monitoring Deficiencies:
-       		 The infrastructure lacks comprehensive monitoring capabilities, which hinders the ability to detect and address issues proactively. Without monitoring, you could have server trouble or slowdowns without even knowing.
+Single Point of Failure (SPOF):
+The infrastructure faces a potential Single Point of Failure (SPOF) with the load balancer. If the load balancer encounters
+a failure, traffic distribution will be disrupted, impacting service availability of our website (foobar.com).
+
+Security Concerns:
+The infrastructure lacks essential security measures such as a firewall and HTTPS encryption.
+Adding a firewall to the infrastructure is crucial for filtering and securing incoming traffic, thus preventing unauthorized access
+and potential threats. Firewalls filter which incoming traffic gets in and which HTTP incoming traffic is blocked, while HTTPS encrypts
+the data while in transit to prevent a third-party from being able to read the real data that is being transmitted.

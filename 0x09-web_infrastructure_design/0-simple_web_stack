@@ -1,26 +1,41 @@
 https://imgur.com/vSiaojB
 
-From the infrastructure image whose link is provided above, a user tries to visit foobar.com and the TLD points at the ip address of 8.8.8.8 of the server where a DNS zone file contains an A record of value 'www' that points at 8.8.8.8 as the authoritative server.
+From the infrastructure image whose link is provided above, a user tries to visit foobar.com and the TLD points
+at the ip address of 8.8.8.8 of the server where a DNS zone file contains an A record of value 'www' that points
+at 8.8.8.8 as the authoritative server.
+
 This server contains:
     - A Linux server OS
-    A server is a computer device that has a server version of an OS installed on it. It is typically used to accept input from client OS or another server and processes the input and returns its result, known as output.
+    A server is a computer device that has a server version of an OS installed on it. It is typically used to
+    accept input from client OS or another server and processes the input and returns its result, known as output.
 
     - web server (Nginx) is installed on the server
-    Nginx is one of the available web server software that is used to accept HTTP request from client and returns the static web content back to the client, which makes the request.
+    Nginx is one of the available web server software that is used to accept HTTP request from client and
+    returns the static web content back to the client, which makes the request.
     
     - application server is installed and configured on the same server
-    Application server enables the server to apply process a request using the business logic of an organization as defined in the application file or code base.
+    Application server enables the server to apply process a request using the business logic of an organization
+    as defined in the application file or code base.
     
     - application files (your code base) is stored on the same server
-    The application file is the code base that contains the definition of the business logic of a given organization. It is used by the application server to carry out various request from a user.
+    The application file is the code base that contains the definition of the business logic of a given organization.
+    It is used by the application server to carry out various request from a user.
     
-    - 1 database (MySQL) is installed and confirgured on this same server
-    MySQL is a well-structured storage system that is used to store data efficiently and provides it users with ability, to retrieve, modify, add, and delete data.
+    - database (MySQL) is installed and configured on this same server
+    MySQL is a well-structured storage system that is used to store data efficiently and provides it users with
+    ability, to retrieve, modify, add, and delete data.
     
     - 1 domain name foobar.com configured with a www record that points to your server IP 8.8.8.8
-    The DNS record of an A record with value www ensures that a website is reachable on www.thewebsitedomain.com. In our instance, adding such DNS record allows a client to be to browse the website of www.foobar.com
-    The domain name enables the user to type in foobar.com in the browser address bar while the name is translated to the ip address of our server, which in this instance is 8.8.8.8
+    The DNS record of an A record with value www ensures that a website is reachable on www.thewebsitedomain.com.
+    In our instance, adding such DNS record allows a client to be to browse the website of www.foobar.com
+    The domain name enables the user to type in foobar.com in the browser address bar while the name is translated to the
+    ip address of our server, which in this instance is 8.8.8.8
 
-This infrastructure has a SPOF (single point og failure) because there is only single server and for us to do any upgrade on the server, the website will not be reachable during the maintainance period.
-There will definitely be downtime during every maintenance on this infrastructure.
-This infrastructure can not scale up if there is too much traffic incoming to it because there is only one single server and as a result the website will perform poorly when there is too much incoming traffic.
+This infrastructure has a SPOF (single point og failure) because there is only single server and for us to do any
+upgrade on the server, the website will not be reachable during the maintainance period.
+
+There will definitely be downtime during every maintenance on this infrastructure since every role
+(such as web server, application server, database server) is bundled on one, single server.
+
+This infrastructure can not scale up if there is too much traffic incoming to it because there is only one single
+server and as a result the website will perform poorly when there is too much incoming traffic.
