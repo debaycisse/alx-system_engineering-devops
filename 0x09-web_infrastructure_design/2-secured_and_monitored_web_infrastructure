@@ -1,1 +1,17 @@
 https://imgur.com/a/1CFe1ks
+
+Some specifics about this infrastructure:
+The web infrastructure whose whiteboard representation link is provided above, contains:
+    The firewall that protects it (infrastructure) from an unauthorized access or traffic from the external source (i.e. internet).
+    The monitoring client or data collector collects live data regarding the health status of the server. It is used to collect any intended set of data to measure the health or perfomance of a typical server.
+    The firewalls are used for the purpose protecting an internal network or infrastructure from malicious incoming traffic from the internet or external sources. It defines which traffic is allowed and which should be blocked via the firewall rule.
+    The traffic, which is coming from the user is served over HTTPS in order to encrypt or secure communication between the user and the server, thereby protecting a user's data, such as password, credit card as a set of data, exchanged during a communication travels through the internet.
+    The Monitoring client is installed on each of the servers to collect their health data. A monitoring agent is used to collect health and perfomance data of a typical host system where it is installed and sends the data to a specified platform where it is analyzed and configured to alert a typical developer to take action in order to correct an issue that may negatively impact the users' experience.
+    The monitoring tool has a client software that is installed on the 3 servers, each installed instance of the data collector takes data from its host and sends it to a configured platform where the data is analyzed to get meaningful interpretations regarding the perfomance of the servers and the platform can also interprete the performance of the servers.
+    To monitor a web server QPS:
+    A set of data, such as number of requests per seconds, number of response per seconds, and so on may be collected via the data collector agent and sent to be analyzed through the platform where the data collector is configured to forward the data in order to measure the number of queries or requests that a server can process per second. The analysis may be used to know the performance of the server in respect to the users' experience.
+
+The Issues with this infrastructure:
+    Terminating SSL at the load balancer may expose unencrypted traffic between the load balancer and the web servers. Ensuring end-to-end encryption across the entire communication path is essential for maintaining data integrity and security.
+    Relying on a single MySQL server for write operations poses a potential single point of failure. Implementing a primary replica cluster for MySQL is advisable to ensure data availability and introduce redundancy in the event of a server failure.
+    Deploying servers with identical components for web, application, and database servers may lead to uneven resource consumption. It is crucial to customize resource allocation based on the specific requirements of each component to optimize overall performance.
