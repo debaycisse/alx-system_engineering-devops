@@ -46,8 +46,10 @@ Single Point of Failure (SPOF):
 The infrastructure faces a potential Single Point of Failure (SPOF) with the load balancer. If the load balancer encounters
 a failure, traffic distribution will be disrupted, impacting service availability of our website (foobar.com).
 
-Security Concerns:
 The infrastructure lacks essential security measures such as a firewall and HTTPS encryption.
 Adding a firewall to the infrastructure is crucial for filtering and securing incoming traffic, thus preventing unauthorized access
 and potential threats. Firewalls filter which incoming traffic gets in and which HTTP incoming traffic is blocked, while HTTPS encrypts
 the data while in transit to prevent a third-party from being able to read the real data that is being transmitted.
+Currently, this infrastructure lacks firewall protection.
+
+No monitoring of any sort is implemented on this infrastructure.

@@ -1,26 +1,30 @@
-https://imgur.com/a/YbdLVQp
+https://imgur.com/a/hyDgY9a
+
+You must be able to explain some specifics about this infrastructure:
 
 In the infrastructure whose image representation is provided above:
 
 There are 3 servers with differently roles, namely, web server, application server and database server respectively.
 
-The Web Server handles users' requests for HTML static content, such as html document, image files, audio files and so on.
-This server hosts the html documents and other files that are hyperlinked in the html document as well.
+      - The Web Server handles users' requests for HTML static content, such as html document, image files,
+      audio files and so on.
+      This server hosts the html documents and other files that are hyperlinked in the html document as well.
 
-The Application Server handles the business logic operations, such as retrieving of data, adding new data, modifying
-existing data and deleting existing data. It typically hosts the application file or code base, which contains the definition
-of the business logic operations.
+      - The Application Server handles the business logic operations, such as retrieving of data, adding
+      new data, modifying existing data and deleting existing data.
+      It typically hosts the application file or code base, which contains the definition of the
+      business logic operations.
 
-The Database Server stores the data that has been collected so far in a structure that promotes efficient retrieval of data,
-creation of new data, deletion of the existing data, and modification of the existing data. It saves and persists every form of
-changes that are made to the data. The Application server frequently communicates with this server (that is Database Server) to
-perform most of its operation.
+      - The Database Server stores the data that has been collected so far in a structure that promotes
+      efficient retrieval of data, creation of new data, deletion of the existing data, and
+      modification of the existing data. It saves and persists every form of changes that are made to the data.
 
-The load balancer cluster enables two or more load balancers to be put into the use of evenly distributing incoming traffic to the
-existing servers. Having a cluster of load balancer eradicates the Single Point Of Failure (SPOF) for the infrastructure,
-regarding the load balancer.
+      - The Application server frequently communicates with this server (that is Database Server) to perform
+      most of its operation.
 
-There is still a need for having a cluster for all the seperated server roles because if the single web server fails, the web site
-will not be reachable.
-This same thing applies to the Application Server and the Database Server. If any of them fails the particular services, which they
-render will become unavailable, therefore a SPOF still exists in this infrastructure.
+      - The load balancer cluster enables two or more load balancers to be put into the use of evenly distributing
+      incoming traffic to the existing servers.
+      Having a cluster of load balancer eradicates the Single Point Of Failure (SPOF) for the infrastructure,
+      regarding the load balancer.
+
+      - Having all the components in cluster brings about High-availability and eradication of single point of failure.

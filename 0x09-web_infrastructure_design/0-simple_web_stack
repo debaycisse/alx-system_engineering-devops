@@ -2,12 +2,14 @@ https://imgur.com/vSiaojB
 
 From the infrastructure image whose link is provided above, a user tries to visit foobar.com and the TLD points
 at the ip address of 8.8.8.8 of the server where a DNS zone file contains an A record of value 'www' that points
-at 8.8.8.8 as the authoritative server.
+at 8.8.8.8 as the authoritative server. This infrastructure will typically communicate via a TCP/IP protocol because
+there is a need to confirm that all the sent data between the client and the server are received in their entirety.
 
 This server contains:
     - A Linux server OS
     A server is a computer device that has a server version of an OS installed on it. It is typically used to
     accept input from client OS or another server and processes the input and returns its result, known as output.
+    It may be a physical (bare metal) or virtual computer. It is typically located in a datacenter.
 
     - web server (Nginx) is installed on the server
     Nginx is one of the available web server software that is used to accept HTTP request from client and
@@ -15,7 +17,7 @@ This server contains:
     
     - application server is installed and configured on the same server
     Application server enables the server to apply process a request using the business logic of an organization
-    as defined in the application file or code base.
+    as defined in the application file or code base to provide a dynamic content.
     
     - application files (your code base) is stored on the same server
     The application file is the code base that contains the definition of the business logic of a given organization.
