@@ -1,0 +1,4 @@
+Host 530748-web-01 34.229.55.139
+     HostName 34.229.55.139
+     IdentitiesOnly = yes
+     IdentityFile ~/.ssh/school
