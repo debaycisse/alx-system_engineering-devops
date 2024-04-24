@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# customizes an apache server's root's content and starts its service
+echo 'Hello Holberton' | sudo tee /var/www/html/index.html
+sudo service apache2 start
