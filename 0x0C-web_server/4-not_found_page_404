@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# script configures a custom 404 page on an nginx server
+sudo su
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+sudo sed -i '75i \\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-enabled/default
+sudo service nginx restart;
+exit;
