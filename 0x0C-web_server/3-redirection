@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# configures a permanent redirection on an nginx web server
+sudo sed -i '53i \\n\tLocation /redirect_me {\n\t\trewrite  ^/r(.*)e{0,1}/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}' /etc/nginx/sites-available/default
+sudo su;
+sudo service nginx restart;
+exit;
