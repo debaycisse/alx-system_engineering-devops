@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# script installs nginx and configures it to run on port 80 and configures a custom header to track the name of a server, serving a traffic at any point in time.
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow "Nginx HTTP"
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo service nginx restart
+sudo sed -i '53i \\n\tlocation /redirect_me/ {\n\t\trewrite ^/r(.*)/$ https://www.google.com permanent;\n\t}' /etc/nginx/sites-available/default
+sudo service nginx restart
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+echo "" | sudo tee -a /usr/share/nginx/html/custom_404.html
+sudo sed -i '75i \\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-enabled/default
+sudo service nginx restart
+sudo sed -i "47i \\\n\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+sudo service nginx restart
