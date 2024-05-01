@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script debugs and solves an nginx installation that is not reachable on port 80
+apt-get update
+apt-get install -y nginx
+service nginx start
