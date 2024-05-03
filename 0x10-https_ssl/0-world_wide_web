@@ -5,9 +5,14 @@ display_dns_info() {
 	if [[ -z "$2" ]]; then
 		sub_domain=('www' 'lb-01' 'web-01' 'web-02')
 		for dm in "${sub_domain[@]}"; do
-			echo "The subdomain $dm is a A record and points to $(dig -type A "$dm.$1")"
-#echo $dm
+			rec_type="$(dig $dm.$1 | grep -A1 'ANSWER SECTION' | tail -n 1 | awk '{print $4}')"
+			rec_addr="$(dig $dm.$1 | grep -A1 'ANSWER SECTION' | tail -n 1 | awk '{print $5}')"
+			echo "The subdomain $dm is a $rec_type record and points to $rec_addr"
 		done
+	elif [[ -n "$2" ]]; then
+		rec_type="$(dig $2.$1 | grep -A1 'ANSWER SECTION' | tail -n 1 | awk '{print $4}')"
+		rec_addr="$(dig $2.$1 | grep -A1 'ANSWER SECTION' | tail -n 1 | awk '{print $5}')"
+		echo "The subdomain $2 is a $rec_type record and points to $rec_addr"
 	fi
 }
 
