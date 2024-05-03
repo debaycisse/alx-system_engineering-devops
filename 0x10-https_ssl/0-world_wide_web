@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script queries a given DNS and displays the A record using a custom function
+
+display_dns_info() {
+	if [[ -z "$2" ]]; then
+		sub_domain=('www' 'lb-01' 'web-01' 'web-02')
+		for dm in "${sub_domain[@]}"; do
+			echo "The subdomain $dm is a A record and points to $(dig -type A "$dm.$1")"
+#echo $dm
+		done
+	fi
+}
+
+display_dns_info $1 $2
