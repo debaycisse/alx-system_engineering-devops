@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# configures nginx to run as nginx user and not as root
+
+if [[ "$(awk -F ':' '{print $1}' /etc/passwd | grep 'nginx')" != 'nginx'  ]]; then
+    sudo useradd --create-home nginx
+fi
+
+sudo service nginx stop
+sudo chown nginx:nginx /usr/sbin/nginx
+sudo chown -R nginx:nginx /etc/nginx
+sudo chown -R nginx:nginx /var/log/nginx
+sudo touch /run/nginx.pid
+sudo chown  nginx:nginx /run/nginx.pid
+sudo sed -i 's/user www-data;/user nginx;/' /etc/nginx/nginx.conf
+sed -i 's/80 default_server;/8080 default_server;/' /etc/nginx/sites-enabled/default
+sudo ufw allow 8080/tcp
+sudo -u nginx service nginx start
