@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# creates a backup copy for MySQL database and compresses the backup file
+if [[ "$#" -ne 1 ]]; then
+	echo "Usage: $0 'user's password'"
+else
+	mysqldump --user root --password="$1" --all-databases > backup.sql
+	day="$(date +%d)"
+	month="$(date +%m)"
+	year="$(date +%Y)"
+	file_name="$day-$month-$year"
+	tar -czvf "$file_name".tar.gz backup.sql
+fi
