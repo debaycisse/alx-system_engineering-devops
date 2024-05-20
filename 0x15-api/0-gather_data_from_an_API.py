@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """This module defines a script that takes a used ID to generate a
 list todos of a user, both the completed and uncompleted todos"""
-from sys import argv
-from requests import get
 import json
+import requests
+import sys
 
 
 def count_task(data_list, key, value):
@@ -39,15 +39,15 @@ def display_completed_tasks(data_list, task_status):
 
 if __name__ == '__main__':
 
-    if len(argv) < 2:
-        print(f"Usage: python3 {argv[0]} user_id")
+    if len(sys.argv) < 2:
+        print(f"Usage: python3 {sys.argv[0]} user_id")
     else:
         todo_url = 'https://jsonplaceholder.typicode.com/todos?userId={}'\
-            .format(argv[1])
+            .format(sys.argv[1])
         user_url = 'https://jsonplaceholder.typicode.com/users?id={}'\
-            .format(argv[1])
-        todo_res = json.loads(get(todo_url).text)
-        emp_name_res = json.loads(get(user_url).text)
+            .format(sys.argv[1])
+        todo_res = json.loads(requests.get(todo_url).text)
+        emp_name_res = json.loads(requests.get(user_url).text)
         dt = count_task(todo_res, 'completed', True)
         tt = count_task(todo_res, 'completed', False) + dt
         emp_name = emp_name_res[0].get('name')
