@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """This module defines a script that takes a used ID to generate a
 list todos of a user, both the completed and uncompleted todos"""
-from requests import get
 from sys import argv
+from requests import get
 import json
 
 
@@ -48,8 +48,8 @@ if __name__ == '__main__':
             .format(argv[1])
         todo_res = json.loads(get(todo_url).text)
         emp_name_res = json.loads(get(user_url).text)
-        done_tasks = count_task(todo_res, 'completed', True)
-        total_tasks = count_task(todo_res, 'completed', False) + done_tasks
-        print(f"Employee {emp_name_res[0].get('name')}",
-              f"is done with tasks {done_tasks}/{total_tasks}")
+        dt = count_task(todo_res, 'completed', True)
+        tt = count_task(todo_res, 'completed', False) + dt
+        emp_name = emp_name_res[0].get('name')
+        print(f"Employee {emp_name} is done with tasks ({dt}/{tt}):")
         display_completed_tasks(todo_res, True)
