@@ -51,6 +51,5 @@ if __name__ == '__main__':
         dt = count_task(todo_res, 'completed', True)
         tt = count_task(todo_res, 'completed', False) + dt
         emp_name = emp_name_res[0].get('name')
-        print("Employee {} is done with tasks ({}/{}):"\
-              .format(emp_name, dt, tt))
+        print("Employee %s is done with tasks (%s/%s):" % (emp_name, dt, tt))
         display_completed_tasks(todo_res, True)
