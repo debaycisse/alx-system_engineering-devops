@@ -48,7 +48,7 @@ server {
 		try_files $uri $uri/ =404;
 	}
 
-	location /onepage/ {
+	location /airbnb-onepage/ {
 		proxy_pass http://localhost:5000/;
 	}
 
