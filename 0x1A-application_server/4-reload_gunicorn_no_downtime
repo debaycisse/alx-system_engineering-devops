@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# script reloads the gunicorn process instance, created via service
+sudo systemctl reload gunicorn

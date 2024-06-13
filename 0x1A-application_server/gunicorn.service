@@ -8,6 +8,7 @@ Group=ubuntu
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v4
 Environment="PATH=/usr/local/bin"
 ExecStart=/usr/local/bin/gunicorn --workers 3 --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app
+ExecReload=/usr/bin/kill -1 $MAINPID
 StandardOutput=file:/tmp/airbnb-access.log
 StandardError=file:/tmp/airbnb-error.log
 
